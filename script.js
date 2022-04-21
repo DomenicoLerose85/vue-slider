@@ -47,12 +47,17 @@ const app = new Vue ({
                 this.activeIndex -= 1;    
             }
         },
-
+        autoScroll(){
+            this.timer = setInterval(()=>{
+                this.nextSlide();
+            },3000);    
+        },
+        stopAutoScroll(){
+            clearInterval(this.timer);
+            this.timer = null;
+        }
     },
     mounted(){
-        this.timer = setInterval(()=>{
-            this.nextSlide();
-        },3000);
-
+        this.autoScroll();
     }
 });
