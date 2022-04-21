@@ -1,7 +1,4 @@
 
-
-console.log(slides);
-
 const app = new Vue ({
     el: '#app',
     data: {
@@ -33,8 +30,29 @@ const app = new Vue ({
             }
         ],
         activeIndex: 0, 
+        timer: null,
     },
     methods:{
+        nextSlide(){
+            if(this.activeIndex === 4){
+                this.activeIndex = 0; 
+            } else {
+                this.activeIndex += 1;    
+            }
+        },
+        previousSlide(){
+            if(this.activeIndex === 0){
+                this.activeIndex = 4; 
+            } else {
+                this.activeIndex -= 1;    
+            }
+        },
+
+    },
+    mounted(){
+        this.timer = setInterval(()=>{
+            this.nextSlide();
+        },3000);
 
     }
-})
+});
